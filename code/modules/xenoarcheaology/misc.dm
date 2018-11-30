@@ -2,7 +2,7 @@
 	notices = 5
 	icon_state = "nboard05"
 
-/obj/structure/noticeboard/anomaly/New()
+/obj/structure/noticeboard/anomaly/Initialize()
 	var/obj/item/weapon/paper/P = new()
 	P.SetName("Memo RE: proper analysis procedure")
 	P.info = "<br>We keep test dummies in pens here for a reason, so standard procedure should be to activate newfound alien artifacts and place the two in close proximity. Promising items I might even approve monkey testing on."
@@ -41,7 +41,7 @@
 /obj/structure/bookcase/manuals/xenoarchaeology
 	name = "Xenoarchaeology Manuals bookcase"
 
-/obj/structure/bookcase/manuals/xenoarchaeology/New()
+/obj/structure/bookcase/manuals/xenoarchaeology/Initialize()
 	..()
 	new /obj/item/weapon/book/manual/excavation(src)
 	new /obj/item/weapon/book/manual/mass_spectrometry(src)
@@ -61,7 +61,7 @@
 	icon_broken = "secureresbroken"
 	icon_off = "secureresoff"
 
-/obj/structure/closet/secure_closet/xenoarchaeologist/New()
+/obj/structure/closet/secure_closet/xenoarchaeologist/Initialize()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/toxins(src)
@@ -74,7 +74,7 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/glasses/science(src)
 	new /obj/item/device/radio/headset/headset_sci(src)
-	new /obj/item/clothing/mask/gas(src) 
+	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/weapon/clipboard(src)
 	new /obj/item/weapon/storage/belt/archaeology(src)
 	new /obj/item/weapon/storage/excavation(src)
@@ -86,7 +86,7 @@
 	icon_closed = "toolcloset"
 	icon_opened = "toolclosetopen"
 
-/obj/structure/closet/excavation/New()
+/obj/structure/closet/excavation/Initialize()
 	..()
 	new /obj/item/weapon/storage/belt/archaeology(src)
 	new /obj/item/weapon/storage/excavation(src)
