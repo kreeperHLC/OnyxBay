@@ -18,6 +18,18 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 #define ASSET_CACHE_TELL_CLIENT_AMOUNT 8
 
 /client
+	var/fullscreen = 0	//Keep track of whether window is in fullscreen mode or not.
+	New() //When a new client arrives (a new user logs in)...
+		..() //Perform the default new client proc
+		ToggleFullscreen() //Then toggle fullscreen to TRUE
+	verb/ToggleFullscreen()
+			fullscreen = !fullscreen //Toggle the fullscreen variable
+			if(fullscreen) //If fullscreen == 1 (TRUE)
+				winset(src, "default", "is-maximized=false;can-resize=false;titlebar=false;menu=") //Reset to not maximized and turn off titlebar.
+				winset(src, "default", "is-maximized=true") //Now set to maximized. We have to do this separately, so that the taskbar is appropriately covered.
+			else //If fullscreen == 0 (FALSE)
+				winset(src, "default", "is-maximized=false;can-resize=true;titlebar=true;menu=menu") //Set window to normal size.
+
 	var/list/cache = list() // List of all assets sent to this client by the asset cache.
 	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
 	var/list/sending = list()

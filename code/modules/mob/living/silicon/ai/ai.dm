@@ -3,30 +3,11 @@
 
 var/list/ai_list = list()
 var/list/ai_verbs_default = list(
-	/mob/living/silicon/ai/proc/ai_announcement,
-	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
-	/mob/living/silicon/ai/proc/ai_camera_track,
-	/mob/living/silicon/ai/proc/ai_camera_list,
-	/mob/living/silicon/ai/proc/ai_goto_location,
-	/mob/living/silicon/ai/proc/ai_remove_location,
-	/mob/living/silicon/ai/proc/ai_hologram_change,
 	/mob/living/silicon/ai/proc/ai_network_change,
-	/mob/living/silicon/ai/proc/ai_roster,
-	/mob/living/silicon/ai/proc/ai_statuschange,
-	/mob/living/silicon/ai/proc/ai_store_location,
-	/mob/living/silicon/ai/proc/ai_checklaws,
 	/mob/living/silicon/ai/proc/control_integrated_radio,
-	/mob/living/silicon/ai/proc/core,
-	/mob/living/silicon/ai/proc/pick_icon,
-	/mob/living/silicon/ai/proc/sensor_mode,
-	/mob/living/silicon/ai/proc/show_laws_verb,
 	/mob/living/silicon/ai/proc/toggle_acceleration,
-	/mob/living/silicon/ai/proc/toggle_camera_light,
-	/mob/living/silicon/ai/proc/multitool_mode,
 	/mob/living/silicon/ai/proc/toggle_hologram_movement,
-	/mob/living/silicon/ai/proc/ai_power_override,
-	/mob/living/silicon/ai/proc/ai_shutdown
 )
 
 //Not sure why this is necessary...
@@ -289,8 +270,6 @@ var/list/ai_verbs_default = list(
 	setup_icon()
 
 /mob/living/silicon/ai/proc/pick_icon()
-	set category = "Silicon Commands"
-	set name = "Set AI Core Display"
 	if(stat || !has_power())
 		return
 
@@ -313,15 +292,11 @@ var/list/ai_verbs_default = list(
 
 // this verb lets the ai see the stations manifest
 /mob/living/silicon/ai/proc/ai_roster()
-	set category = "Silicon Commands"
-	set name = "Show Crew Manifest"
 	show_station_manifest()
 
 /mob/living/silicon/ai/var/message_cooldown = 0
-/mob/living/silicon/ai/proc/ai_announcement()
-	set category = "Silicon Commands"
-	set name = "Make Announcement"
 
+/mob/living/silicon/ai/proc/ai_announcement()
 	if(check_unable(AI_CHECK_WIRELESS | AI_CHECK_RADIO))
 		return
 
@@ -372,6 +347,7 @@ var/list/ai_verbs_default = list(
 		cancel_call_proc(src)
 
 /mob/living/silicon/ai/var/emergency_message_cooldown = 0
+
 /mob/living/silicon/ai/proc/ai_emergency_message()
 	set category = "Silicon Commands"
 	set name = "Send Emergency Message"
@@ -469,9 +445,6 @@ var/list/ai_verbs_default = list(
 	return 1
 
 /mob/living/silicon/ai/cancel_camera()
-	set category = "Silicon Commands"
-	set name = "Cancel Camera View"
-
 	//src.cameraFollow = null
 	src.view_core()
 
@@ -494,8 +467,6 @@ var/list/ai_verbs_default = list(
 	return cameralist
 
 /mob/living/silicon/ai/proc/ai_network_change(var/network in get_camera_network_list())
-	set category = "Silicon Commands"
-	set name = "Jump To Network"
 	unset_machine()
 
 	if(!network)
@@ -517,9 +488,6 @@ var/list/ai_verbs_default = list(
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
-	set category = "Silicon Commands"
-	set name = "AI Status"
-
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
@@ -528,10 +496,6 @@ var/list/ai_verbs_default = list(
 
 //I am the icon meister. Bow fefore me.	//>fefore
 /mob/living/silicon/ai/proc/ai_hologram_change()
-	set name = "Change Hologram"
-	set desc = "Change the default hologram available to AI to something else."
-	set category = "Silicon Commands"
-
 	if(check_unable())
 		return
 
@@ -572,10 +536,6 @@ var/list/ai_verbs_default = list(
 
 //Toggles the luminosity and applies it by re-entereing the camera.
 /mob/living/silicon/ai/proc/toggle_camera_light()
-	set name = "Toggle Camera Light"
-	set desc = "Toggles the light on the camera the AI is looking through."
-	set category = "Silicon Commands"
-
 	if(check_unable())
 		return
 
@@ -642,9 +602,6 @@ var/list/ai_verbs_default = list(
 		return ..()
 
 /mob/living/silicon/ai/proc/control_integrated_radio()
-	set name = "Radio Settings"
-	set desc = "Allows you to change settings of your radio."
-	set category = "Silicon Commands"
 
 	if(check_unable(AI_CHECK_RADIO))
 		return
@@ -654,9 +611,6 @@ var/list/ai_verbs_default = list(
 		src.silicon_radio.interact(src)
 
 /mob/living/silicon/ai/proc/sensor_mode()
-	set name = "Set Sensor Augmentation"
-	set category = "Silicon Commands"
-	set desc = "Augment visual feed with internal sensor overlays"
 	toggle_sensor_mode()
 
 /mob/living/silicon/ai/proc/toggle_hologram_movement()
@@ -692,9 +646,6 @@ var/list/ai_verbs_default = list(
 	return istype(loc, /turf)
 
 /mob/living/silicon/ai/proc/multitool_mode()
-	set name = "Toggle Multitool Mode"
-	set category = "Silicon Commands"
-
 	multitool_mode = !multitool_mode
 	to_chat(src, "<span class='notice'>Multitool mode: [multitool_mode ? "E" : "Dise"]ngaged</span>")
 

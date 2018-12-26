@@ -31,17 +31,61 @@
 #define ui_storage1 "CENTER+1:16,SOUTH:5"
 #define ui_storage2 "CENTER+2:16,SOUTH:5"
 
-#define ui_alien_head "CENTER-3:12,SOUTH:5"		//aliens
-#define ui_alien_oclothing "CENTER-2:14,SOUTH:5"//aliens
+//aliens
 
-#define ui_inv1 "CENTER-1,SOUTH:5"			//borgs
-#define ui_inv2 "CENTER,SOUTH:5"			//borgs
-#define ui_inv3 "CENTER+1,SOUTH:5"			//borgs
-#define ui_borg_store "CENTER+2,SOUTH:5"	//borgs
-#define ui_borg_inventory "CENTER-2,SOUTH:5"//borgs
+#define ui_alien_head "CENTER-3:12,SOUTH:5"
+#define ui_alien_oclothing "CENTER-2:14,SOUTH:5"
 
-#define ui_monkey_mask "WEST+4:14,SOUTH:5"	//monkey
-#define ui_monkey_back "WEST+5:14,SOUTH:5"	//monkey
+//borgs
+
+#define ui_inv1 "CENTER-1,SOUTH:5"
+#define ui_inv2 "CENTER,SOUTH:5"
+#define ui_inv3 "CENTER+1,SOUTH:5"
+#define ui_borg_store "CENTER+2,SOUTH:5"
+#define ui_borg_inventory "CENTER-2,SOUTH:5"
+
+// AI
+#define ui_ai_core "SOUTH:6,WEST"
+#define ui_ai_core_display "SOUTH:6,WEST+1"
+#define ui_ai_status "SOUTH:6,WEST+2"
+#define ui_ai_change_hologram "SOUTH:6,WEST+3"
+#define ui_ai_crew_manifest "SOUTH:6,WEST+4"
+#define ui_ai_null "SOUTH:6,WEST+5"
+#define ui_ai_announcement "SOUTH:6,WEST+6"
+#define ui_ai_shuttle "SOUTH:6,WEST+7"
+#define ui_ai_state_laws "SOUTH:6,WEST+8"
+#define ui_ai_null "SOUTH:6,WEST+9"
+#define ui_ai_multitool "SOUTH:6,WEST+10"
+
+#define ui_ai_pda_ringer "SOUTH:6,WEST+11"
+#define ui_ai_pda_send "SOUTH:6,WEST+12"
+#define ui_ai_pda_log "SOUTH:6,WEST+13"
+#define ui_ai_pda_sr "SOUTH:6,WEST+14"
+
+#define ui_ai_camera_list "SOUTH:6+1,WEST"
+#define ui_ai_track_with_camera "SOUTH:6+1,WEST+1"
+#define ui_ai_camera_light "SOUTH:6+1,WEST+2"
+#define ui_ai_sensor "SOUTH:6+1,WEST+3"
+
+#define ui_ai_radio "SOUTH:6+1,WEST+4"
+#define ui_ai_null "SOUTH:6+1,WEST+5"
+#define ui_ai_scl "SOUTH:6+1,WEST+6"
+#define ui_ai_gcl "SOUTH:6+1,WEST+7"
+#define ui_ai_dcl "SOUTH:6+1,WEST+8"
+#define ui_ai_null "SOUTH:6+1,WEST+9"
+#define ui_ai_shutdown "SOUTH:6+1,WEST+10"
+#define ui_ai_override "SOUTH:6+1,WEST+11"
+
+#define ui_ai_take_picture "SOUTH:6+1,WEST+12"
+#define ui_ai_view_images "SOUTH:6+1,WEST+13"
+#define ui_ai_del_picture "SOUTH:6+1,WEST+14"
+
+
+
+//monkey
+
+#define ui_monkey_mask "WEST+4:14,SOUTH:5"
+#define ui_monkey_back "WEST+5:14,SOUTH:5"
 
 #define ui_construct_health "EAST:00,CENTER:15" //same height as humans, hugging the right border
 #define ui_construct_purge "EAST:00,CENTER-1:15"

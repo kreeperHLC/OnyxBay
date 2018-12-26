@@ -11,6 +11,7 @@ var/obj/screen/robot_inventory
 	var/obj/screen/using
 
 //Radio
+
 	using = new /obj/screen()
 	using.SetName("radio")
 	using.set_dir(SOUTHWEST)
