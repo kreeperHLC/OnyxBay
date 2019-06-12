@@ -1,7 +1,12 @@
 /obj/item/weapon/paper/talisman
-	icon_state = "paper_talisman"
+	icon = 'icons/obj/cult.dmi'
+	icon_state = "talisman"
 	var/imbue = null
 	info = "<center><img src='talisman.png'></center><br/><br/>"
+
+/obj/item/weapon/paper/talisman/New()
+	overlays += "talisman-rune-[rand(1,10)]"
+	...()
 
 /obj/item/weapon/paper/talisman/attack_self(var/mob/living/user)
 	if(iscultist(user))

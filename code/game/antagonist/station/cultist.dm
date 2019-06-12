@@ -45,12 +45,14 @@ var/datum/antagonist/cultist/cult
 	var/powerless = 0
 	var/datum/mind/sacrifice_target
 	var/list/obj/effect/rune/teleport/teleport_runes = list()
-	var/list/rune_strokes = list()
+	var/list/rune_strokes = list()    // rune buffer
+	var/list/uristrune_cache = list() // word buffer
 	var/list/sacrificed = list()
 	var/cult_rating = 0
 	var/list/cult_rating_bounds = list(CULT_RUNES_1, CULT_RUNES_2, CULT_RUNES_3, CULT_GHOSTS_1, CULT_GHOSTS_2, CULT_GHOSTS_3)
 	var/max_cult_rating = 0
 	var/conversion_blurb = "You catch a glimpse of the Realm of Nar-Sie, the Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of That Which Waits. Assist your new compatriots in their dark dealings. Their goals are yours, and yours are theirs. You serve the Dark One above all else. Bring It back."
+	var/list/allowed_structures = list()
 
 	faction = "cult"
 
@@ -147,11 +149,13 @@ var/datum/antagonist/cultist/cult
 			if(H.current)
 				to_chat(H.current, "<span class='cult'>You feel that the fabric of reality is tearing.</span>")
 				add_cult_magic(H.current)
+		allowed_structures += "Spire"
 	if(CULT_RUNES_3 in to_update)
 		for(var/datum/mind/H in cult.current_antagonists)
 			if(H.current)
 				to_chat(H.current, "<span class='cult'>The world is at end. The veil is as thin as ever.</span>")
 				add_cult_magic(H.current)
+		allowed_structures += "Forge"
 
 	if((CULT_GHOSTS_1 in to_update) || (CULT_GHOSTS_2 in to_update) || (CULT_GHOSTS_3 in to_update))
 		for(var/mob/observer/ghost/D in SSmobs.mob_list)
