@@ -95,7 +95,7 @@
 	desc = "Who knew a tiny ball could fit three people?"
 
 /obj/mecha/working/hoverpod/shuttlepod/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
