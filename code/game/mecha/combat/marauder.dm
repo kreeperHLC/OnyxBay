@@ -58,7 +58,7 @@
 	return
 
 /obj/mecha/combat/marauder/seraph/Initialize()
-	..()//Let it equip whatever is needed.
+	. = ..()//Let it equip whatever is needed.
 	var/obj/item/mecha_parts/mecha_equipment/ME
 	if(equipment.len)//Now to remove it and equip anew.
 		for(ME in equipment)
