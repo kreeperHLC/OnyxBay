@@ -52,7 +52,7 @@
 	step_energy_drain = 0
 
 /obj/mecha/working/ripley/deathripley/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/safety_clamp
 	ME.attach(src)
 	return
@@ -62,7 +62,7 @@
 	name = "APLU \"Miner\""
 
 /obj/mecha/working/ripley/mining/Initialize()
-	..()
+	. = ..()
 	//Attach drill
 	if(prob(25)) //Possible diamond drill... Feeling lucky?
 		var/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill/D = new /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
