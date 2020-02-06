@@ -140,7 +140,8 @@ var/list/admin_verbs_fun = list(
 	/datum/admins/proc/call_drop_pod,
 	/client/proc/create_dungeon,
 	/datum/admins/proc/ai_hologram_set,
-	/client/proc/projectile_basketball
+	/client/proc/projectile_basketball,
+	/client/proc/toggle_possess_mode
 	)
 
 var/list/admin_verbs_spawn = list(
@@ -222,7 +223,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_analyse_health_context,
 	/client/proc/cmd_analyse_health_panel,
 	/client/proc/visualpower,
-	/client/proc/visualpower_remove
+	/client/proc/visualpower_remove,
+	/client/proc/enable_profiler
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -314,7 +316,9 @@ var/list/admin_verbs_hideable = list(
 	/proc/possess,
 	/proc/release,
 	/datum/admins/proc/ictus,
-	/client/proc/projectile_basketball	
+	/client/proc/projectile_basketball,
+	/client/proc/toggle_possess_mode,
+	/client/proc/enable_profiler
 	)
 
 var/list/admin_verbs_mod = list(
@@ -657,7 +661,7 @@ var/list/admin_verbs_mentor = list(
 		usr.PushClickHandler(/datum/click_handler/build_mode)
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/object_talk(var/msg as text) // -- TLE
+/client/proc/object_talk(msg as text) // -- TLE
 	set category = "Special Verbs"
 	set name = "oSay"
 	set desc = "Display a message to everyone who can hear the target"
@@ -953,7 +957,7 @@ var/list/admin_verbs_mentor = list(
 	T.add_spell(new S)
 	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_and_message_admins("gave [key_name(T)] the spell [S].")
-	
+
 /client/proc/projectile_basketball()
 	set category = "Fun"
 	set desc="Globally Toggles the ability to catch bullets with your hands"
@@ -964,4 +968,19 @@ var/list/admin_verbs_mentor = list(
 
 	config.projectile_basketball = !(config.projectile_basketball)
 	log_and_message_admins("toggled projectile basketball mode.")
-	feedback_add_details("admin_verb","PROBAS")	
+	feedback_add_details("admin_verb","PROBAS")
+
+/client/proc/enable_profiler()
+	set category = "Debug"
+	set name = "Enable Profiler"
+	set desc = "Access BYOND's proc performance profiler"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	log_and_message_admins("has enabled performance profiler. This may cause lag.")
+
+	// Give profiler access
+	world.SetConfig("APP/admin", ckey, "role=admin")
+	winset(src, "browserwindow", "is-visible=true")
+	send_link(src, "?debug=profile")

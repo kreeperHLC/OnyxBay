@@ -127,7 +127,7 @@
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
-	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	diary << "TOPIC: \"[T]\", from:[addr], master:[master][log_end]"
 
 	var/input[] = params2list(T)
 	var/key_valid = config.comms_password && input["key"] == config.comms_password
@@ -346,8 +346,12 @@ var/world_topic_spam_protect_time = world.timeofday
 				return "Bad Key (Throttled)"
 			world_topic_spam_protect_time = world.time
 			return "Bad Key"
-		var/ckey = input["ckey"]
-		var/message = input["ooc"]
+		var/ckey = input["ckey"]	
+		var/message
+		if(!input["isadmin"])  // le costil, remove when discord-bot will be fixed ~HonkyDonky
+			message = rhtml_encode(input["ooc"])
+		else
+			message = "<font color='#39034f'>" + strip_html_properly(input["ooc"]) + "</font>"
 		if(!ckey||!message)
 			return
 		if(!config.vars["ooc_allowed"]&&!input["isadmin"])
@@ -383,10 +387,11 @@ var/world_topic_spam_protect_time = world.timeofday
 			return "No client with that name on server"
 
 		var/rank = "Discord Admin"
+		var/response = rhtml_encode(russian_to_cp1251(input["response"]))
 
-		var/message =	"<font color='red'>[rank] PM from <b>[input["admin"]]</b>: [russian_to_cp1251(input["response"])]</font>"
-		var/amessage =  "<span class='info'>[rank] PM from [input["admin"]] to <b>[key_name(C)]</b> : [russian_to_cp1251(input["response"])]</span>"
-		webhook_send_ahelp("[input["admin"]] -> [req_ckey]", russian_to_cp1251(input["response"]))
+		var/message =	"<font color='red'>[rank] PM from <b>[input["admin"]]</b>: [response]</font>"
+		var/amessage =  "<span class='info'>[rank] PM from [input["admin"]] to <b>[key_name(C)]</b> : [response])]</span>"
+		webhook_send_ahelp("[input["admin"]] -> [req_ckey]", response)
 
 		sound_to(C, 'sound/effects/adminhelp.ogg')
 		to_chat(C, message)
@@ -495,7 +500,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		return GLOB.prometheus_metrics.collect()
 
 
-/world/Reboot(var/reason)
+/world/Reboot(reason)
 	// sound_to(world, sound('sound/AI/newroundsexy.ogg')
 
 	Master.Shutdown()
@@ -515,7 +520,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	callHook("shutdown")
 	return ..()
 
-/world/proc/save_mode(var/the_mode)
+/world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode

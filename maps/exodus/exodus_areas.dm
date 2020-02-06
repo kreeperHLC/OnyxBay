@@ -33,7 +33,13 @@
 	base_turf = /turf/space/transit/south
 
 /area/shuttle/merchant/away
-	name = "\improper Merchant Van - Station Side"
+	name = "\improper Merchant Van - Station North East"
+
+/area/shuttle/merchant/dock
+	name = "\improper Merchant Van - Station Docking Bay"
+
+/area/shuttle/merchant/ghetto
+	name = "\improper Merchant Van - Station Ghetto Dock"
 
 // Command
 /area/crew_quarters/heads/chief
@@ -610,6 +616,10 @@
 
 /area/maintenance/underground/port_primary_hallway
 	name = "\improper Underground Port Primary Hallway Maintenance"
+	icon_state = "uportprim"
+
+/area/maintenance/underground/board_games_club
+	name = "\improper Underground Board Games Club"
 	icon_state = "uportprim"
 
 /area/maintenance/underground/gateway
